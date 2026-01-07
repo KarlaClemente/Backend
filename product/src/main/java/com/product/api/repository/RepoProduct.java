@@ -16,4 +16,5 @@ public interface RepoProduct extends JpaRepository<Product, Integer> {
                    + "WHERE p.product_id = :product_id;", nativeQuery = true)
     //DtoProductOut getProduct(Integer product_id);
     DtoProductOut getProduct(@Param("product_id") Integer product_id);
+    Product findByGtin(String gtin);
 }

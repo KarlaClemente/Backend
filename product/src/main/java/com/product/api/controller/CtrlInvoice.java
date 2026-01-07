@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.product.api.dto.ApiResponse;
@@ -43,5 +44,10 @@ public class CtrlInvoice {
 	public ResponseEntity<ApiResponse> create(){
 		return ResponseEntity.ok(svc.create());
 	}
-	
+
+	@PostMapping("/checkout")
+	@Operation(summary = "Creación de factura con cupón y dirección", description = "Cliente crea una factura")
+	public ResponseEntity<ApiResponse> checkout(@RequestParam Integer addressId, @RequestParam(required = false) String couponCode) {
+		return ResponseEntity.ok(svc.checkout(addressId, couponCode));
+	}
 }

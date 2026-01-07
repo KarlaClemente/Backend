@@ -11,4 +11,5 @@ public interface SvcInvoice {
 	public List<DtoInvoiceList> findAll();
 	public Invoice findById(Integer id);
 	public ApiResponse create();
+	public ApiResponse checkout(Integer addressId, String couponCode);
 }

@@ -19,10 +19,13 @@ public class MapperInvoice {
 			DtoInvoiceList dtoInvoice = new DtoInvoiceList(
 		            invoice.getInvoice_id(),
 		            invoice.getUser_id(),
+					invoice.getAddress_id(),
 		            invoice.getCreated_at(),
 		            invoice.getSubtotal(),
 		            invoice.getTaxes(),
-		            invoice.getTotal()
+		            invoice.getTotal(),
+					invoice.getCouponCode(),
+					invoice.getDiscountApplied()
 		        );
 			dtoInvoices.add(dtoInvoice);
 		}

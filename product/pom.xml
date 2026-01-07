@@ -107,6 +107,11 @@
 			<artifactId>spring-cloud-starter-config</artifactId>
 			<version>4.2.2</version>
 		</dependency>
+		<!-- Agregando cliente de Eureka -->
+		<dependency> 
+		    <groupId>org.springframework.cloud</groupId> 
+		    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId> 
+		</dependency> 
 	</dependencies>
 	
 	<dependencyManagement>

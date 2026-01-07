@@ -30,6 +30,7 @@ public class SecurityConfig {
 				.requestMatchers(HttpMethod.GET, "/product/**").hasAnyAuthority("ADMIN", "CUSTOMER")
 				.requestMatchers("/product/**").hasAuthority("ADMIN")
 				.requestMatchers("/product-image/**").hasAnyAuthority("ADMIN", "CUSTOMER")
+				.requestMatchers("/cart-item/**").hasAnyAuthority("ADMIN", "CUSTOMER")
 				)
 		.cors(cors -> cors.configurationSource(corsConfig))
 		.httpBasic(Customizer.withDefaults())

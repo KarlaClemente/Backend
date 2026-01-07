@@ -37,20 +37,24 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
 
         String token = authHeader.substring(7);
-        String username = jwtUtil.extractUsername(token);
-        List<HashMap<String, String>> permisos = jwtUtil.extractPermisos(token);
+        java.util.Map<String, Object> claimsMap = jwtUtil.extractClaims(token);
         
-        List<String> permisosList = permisos.stream().map(i -> i.get("authority")).toList();
+        String username = (String) claimsMap.get("email");
+        java.util.List<java.util.HashMap<String, String>> permisos = jwtUtil.extractPermisos(token);
+        
+        java.util.List<String> permisosList = permisos.stream().map(i -> i.get("authority")).toList();
         
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = User.withUsername(username)
-            		.password("")
-            		.authorities(permisosList.toArray(new String[0]))
-                    .build();
-
+            UserDetails authoritiesDetails = User.withUsername(username)
+                .password("")
+                .authorities(permisosList.toArray(new String[0]))
+                .build();
             UsernamePasswordAuthenticationToken authToken = 
-                new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                new UsernamePasswordAuthenticationToken(
+                    claimsMap,
+                    null, 
+                    authoritiesDetails.getAuthorities());
             
             SecurityContextHolder.getContext().setAuthentication(authToken);
         }

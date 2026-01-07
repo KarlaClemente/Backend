@@ -5,6 +5,8 @@ public class DtoInvoiceList {
 	private Integer id;
 	
 	private Integer user_id;
+
+	private Integer address_id;
 		
 	private String created_at;
 	
@@ -13,19 +15,26 @@ public class DtoInvoiceList {
 	private Double taxes;
 	
 	private Double total;
+
+	private String couponCode;
+
+    private Double discountApplied;
 	
 	public DtoInvoiceList() {
 		
 	}
 
-	public DtoInvoiceList(Integer id, Integer user_id, String created_at, Double subtotal, Double taxes, Double total) {
+	public DtoInvoiceList(Integer id, Integer user_id, Integer address_id, String created_at, Double subtotal, Double taxes, Double total, String couponCode, Double discountApplied) {
 		super();
 		this.id = id;
 		this.user_id = user_id;
+		this.address_id = address_id;
 		this.created_at = created_at;
 		this.subtotal = subtotal;
 		this.taxes = taxes;
 		this.total = total;
+		this.couponCode = couponCode;
+		this.discountApplied = discountApplied;
 	}
 
 	public Integer getId() {
@@ -42,6 +51,14 @@ public class DtoInvoiceList {
 
 	public void setUser_id(Integer user_id) {
 		this.user_id = user_id;
+	}
+
+	public Integer getAddress_id() {
+		return address_id;
+	}
+
+	public void setAddress_id(Integer address_id) {
+		this.address_id = address_id;
 	}
 
 	public String getCreated_at() {
@@ -75,4 +92,20 @@ public class DtoInvoiceList {
 	public void setTotal(Double total) {
 		this.total = total;
 	}
+
+	public String getCouponCode() {
+        return couponCode;
+    }
+
+    public void setCouponCode(String couponCode) {
+        this.couponCode = couponCode;
+    }
+
+    public Double getDiscountApplied() {
+        return discountApplied;
+    }
+
+    public void setDiscountApplied(Double discountApplied) {
+        this.discountApplied = discountApplied;
+    }
 }

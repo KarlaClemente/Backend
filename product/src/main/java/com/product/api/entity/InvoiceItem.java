@@ -2,7 +2,10 @@ package com.product.api.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -11,26 +14,35 @@ import jakarta.persistence.Table;
 public class InvoiceItem {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "invoice_item_id")
 	private Integer invoice_item_id;
 	
-	@JsonIgnore
+	@Column(name = "invoice_id")
 	private Integer invoice_id;
 	
+	@Column(name = "gtin")
 	private String gtin;
 
+	@Column(name = "quantity")
 	private Integer quantity;
 
+	@Column(name = "unit_price")
 	private Double unit_price;
 
+	@Column(name = "subtotal")
 	private Double subtotal;
 
+	@Column(name = "taxes")
 	private Double taxes;
 
+	@Column(name = "total")
 	private Double total;
+
+	@Column(name = "status", nullable = false)
+    private int status;
 	
-	public InvoiceItem() {
-		
-	}
+	public InvoiceItem() {}
 
 	public InvoiceItem(Integer invoice_item_id, Integer invoice_id, String gtin, Integer quantity, Double unit_price,
 			Double subtotal, Double taxes, Double total) {
@@ -108,4 +120,20 @@ public class InvoiceItem {
 	public void setTotal(Double total) {
 		this.total = total;
 	}
+
+	/**
+     * Regresa el estatus de una categoría.
+     * @return 0 o 1 dependiendo del estatus de la categoría.
+     */
+    public int getStatus() {
+        return status;
+    }
+
+    /**
+     * Define el estatus de una categoría.
+     * @param status el nuevo estatus de una categoría.
+     */
+    public void setStatus(int status) {
+        this.status = status;
+    }
 }

@@ -1,16 +1,32 @@
-package com.product;
+package com.product.api.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 /* Clase Category, encargada de definir un objeto de tipo categoría. Una categoría cuenta con ID, nombre, tag y estatus */
+@Entity
+@Table(name = "category")
 public class Category {
     /* Un entero que representa el ID de una categoría. */
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int categoryId;
     /* Una cadena con el nombre de una categoría. */
+    @Column(name = "category", unique = true, nullable = false, length = 100)
     private String category;
     /* Una cadena con el tag de una categoría. */
+    @Column(name = "tag", unique = true, nullable = false, length = 50)
     private String tag;
     /* Un entero con el estatus (0 o 1) de una categoría. */
+    @Column(name = "status", nullable = false)
     private int status;
 
+    public Category() {}
+    
     /**
      * Constructor de un objeto de tipo categoría.
      * @param categoryId el número de ID de una categoría.

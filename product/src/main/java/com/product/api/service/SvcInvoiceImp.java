@@ -121,7 +121,7 @@ public class SvcInvoiceImp implements SvcInvoice {
 				invoiceItems.add(invItem);
 				/* Actualizamos la cantidad final de la factura (el conjunto de todos los productos/items asociados) */
 				total += itemTotal;
-				product.setStock(productStock - 1);
+				product.setStock(productStock - quantity);
 				repoProduct.save(product);
 			}
 			/* Calculo de taxes y subtotal */
